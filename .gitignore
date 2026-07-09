@@ -41,3 +41,6 @@ yarn-debug.log*
 **/generated/**
 ssr-generated
 .env
+
+# JetBrains IDE files
+/.idea
