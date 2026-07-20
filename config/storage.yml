@@ -6,6 +6,18 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
+# S3-compatible service backed by the local MinIO container (see docker-compose.yml).
+# force_path_style is required for MinIO: it addresses buckets as
+# http://host:port/bucket instead of AWS's virtual-hosted http://bucket.host:port.
+minio:
+  service: S3
+  endpoint: <%= ENV.fetch("MINIO_ENDPOINT", "http://localhost:9000") %>
+  access_key_id: <%= ENV.fetch("MINIO_ROOT_USER", "minioadmin") %>
+  secret_access_key: <%= ENV.fetch("MINIO_ROOT_PASSWORD", "minioadmin") %>
+  region: us-east-1
+  bucket: <%= ENV.fetch("MINIO_BUCKET", "tobi-atlas-development") %>
+  force_path_style: true
+
 # Use bin/rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
 #   service: S3

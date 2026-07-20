@@ -2,6 +2,8 @@
 # This file contains the defaults used by shakapacker.
 
 default: &default
+
+  nested_entries_dir: ror_components
   source_path: app/javascript
 
   # You can have a subdirectory of the source_path, like 'packs' (recommended).

@@ -1,2 +1,24 @@
-<h1>Tobi Atlas</h1>
-<p>Welcome to your Ruby on Rails application.</p>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">🌍 Tobi Atlas</a>
+    <div class="navbar-nav ms-auto">
+      <% if current_user %>
+        <span class="navbar-text me-3">Welcome, <%= current_user.username %>!</span>
+        <%= link_to "My Trips", trips_path, class: "btn btn-primary me-2" %>
+        <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-danger" %>
+      <% else %>
+        <%= link_to "Login", login_path, class: "btn btn-primary me-2" %>
+        <%= link_to "Sign Up", new_user_path, class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</nav>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>Welcome to Tobi Atlas</h1>
+      <p class="lead">Plan your dream trips and manage all your travel ideas in one place.</p>
+    </div>
+  </div>
+</div>

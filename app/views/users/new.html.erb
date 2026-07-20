@@ -1,0 +1,46 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow">
+        <div class="card-body p-5">
+          <h2 class="card-title text-center mb-4">Create Your Account</h2>
+          <% if @user.errors.any? %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+              <h5 class="alert-heading">Errors:</h5>
+              <ul class="mb-0">
+                <% @user.errors.full_messages.each do |message| %>
+                <li><%=message %></li>
+                <% end %>
+              </ul>
+              <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+          <% end %>
+          <%= form_with(model: @user, local: true, class: "form") do |form| %>
+            <div class="mb-3">
+              <%= form.label :email, class: "form-label" %>
+              <%= form.email_field :email, class: "form-control", placeholder: "Enter your email" %>
+            </div>
+            <div class="mb-3">
+              <%= form.label :username, class: "form-label" %>
+              <%= form.text_field :username, class: "form-control", placeholder: "Choose a username" %>
+            </div>
+            <div class="mb-3">
+              <%= form.label :password, class: "form-label" %>
+              <%= form.password_field :password, class: "form-control", placeholder: "Choose a password" %>
+            </div>
+            <div class="mb-3">
+              <%= form.label :password_confirmation, class: "form-label" %>
+              <%= form.password_field :password_confirmation, class: "form-control", placeholder: "Confirm your password" %>
+            </div>
+            <div class="d-grid gap-2">
+              <%= form.submit "Sign up", class: "btn btn-success btn-lg" %>
+            </div>
+          <% end %>
+          <p class="text-center mt-3">
+            Already have an account? <%= link_to "Login", login_path %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<%= react_component("Trips", props: {
+  trips: @trips.map { |trip| trip_props(trip) },
+  newTripUrl: new_trip_path,
+  csrfToken: form_authenticity_token
+}) %>

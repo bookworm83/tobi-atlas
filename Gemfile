@@ -5,7 +5,6 @@ gem "rails", "~> 8.1.3"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
 gem "propshaft"
 # Use postgresql as the database for Active Record
-gem "pg", "~> 1.1"
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", ">= 5.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
@@ -33,6 +32,9 @@ gem "thruster", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
+
+# S3 client used by Active Storage's S3 service (also used for local MinIO)
+gem "aws-sdk-s3", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -62,3 +64,11 @@ end
 gem "react_on_rails", "= 16.6"
 
 gem "shakapacker", "= 10.3"
+
+gem "bcrypt", "= 3.1.7"
+
+gem "pry-byebug"
+
+gem "bootstrap", "~> 5.3.0"
+gem "sassc-rails"
+gem "sqlite3", "~> 2.0"
