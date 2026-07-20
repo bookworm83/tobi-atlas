@@ -44,3 +44,5 @@ ssr-generated
 
 # JetBrains IDE files
 /.idea
+/db/*.sqlite3
+/db/*.sqlite3-*

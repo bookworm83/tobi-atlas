@@ -1,26 +1,8 @@
-<h1>Edit Trip</h1>
-<%= form_with(model: @trip, local: true) do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :start_date %>
-    <%= form.date_field :start_date %>
-  </div>
-  <div>
-    <%= form.label :end_date %>
-    <%= form.date_field :end_date %>
-  </div>
-  <div>
-    <%= form.label :notes %>
-    <%= form.text_area :notes %>
-  </div>
-  <div>
-    <%= form.label :photo %>
-    <%= form.file_field :photo, accept: "image/*" %>
-  </div>
-  <div>
-    <%= form.submit "Update Trip" %>
-  </div>
-<% end %>
+<%= react_component("EditTrip", props: {
+  name: @trip.name,
+  startDate: @trip.start_date&.iso8601,
+  endDate: @trip.end_date&.iso8601,
+  notes: @trip.notes,
+  updateUrl: trip_path(@trip),
+  csrfToken: form_authenticity_token
+}) %>
