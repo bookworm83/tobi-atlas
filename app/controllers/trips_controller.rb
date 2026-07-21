@@ -11,6 +11,7 @@ class TripsController < ApplicationController
   def create
     @trip = current_user.trips.build(trip_params)
     if @trip.save
+      @trip.update(stock_photo_url: UnsplashClient.fetch_photo_url(@trip.name))
       redirect_to trips_path, notice: 'Trip created successfully!'
     else
       render :new

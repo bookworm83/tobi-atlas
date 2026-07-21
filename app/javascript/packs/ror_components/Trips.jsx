@@ -17,12 +17,13 @@ export default function Trips({ trips, newTripUrl, csrfToken }) {
       {trips.length > 0 ? (
         <div className="row">
           {trips.map((trip) => (
-            <div className="col-md-6 mb-4" key={trip.id}>
+            <div className="col-md-3 mb-4" key={trip.id}>
               <div className="card shadow-sm h-100">
                 {trip.photoUrl && (
-                  <img src={trip.photoUrl} className="card-img-top" alt={trip.name} />
+                  <img src={trip.photoUrl} className="card-img-top" alt={trip.name}
+                       style={{ maxHeight: '400px', objectFit: 'cover'}}/>
                 )}
-                <div className="card-body">
+                <div className="card-body d-flex flex-column h-100">
                   <h4 className="card-title">
                     <a href={trip.url} className="text-decoration-none">{trip.name}</a>
                   </h4>
@@ -30,10 +31,9 @@ export default function Trips({ trips, newTripUrl, csrfToken }) {
                   <p className="text-muted small">
                     {trip.startDate} - {trip.endDate}
                   </p>
-
                   <p className="card-text">{trip.notes}</p>
 
-                  <div className="d-flex gap-2">
+                  <div className="d-flex gap-2 mt-auto">
                     <a href={trip.url} className="btn btn-sm btn-primary">View</a>
                     <a href={trip.editUrl} className="btn btn-sm btn-warning">Edit</a>
                     <form action={trip.url} method="post" className="m-0">

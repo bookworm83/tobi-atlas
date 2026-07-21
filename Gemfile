@@ -70,5 +70,11 @@ gem "bcrypt", "= 3.1.7"
 gem "pry-byebug"
 
 gem "bootstrap", "~> 5.3.0"
+
 gem "sassc-rails"
+
 gem "sqlite3", "~> 2.0"
+
+gem "rspec-rails"
+
+gem "faraday"
