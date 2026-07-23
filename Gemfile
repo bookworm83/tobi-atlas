@@ -65,7 +65,7 @@ gem "react_on_rails", "= 16.6"
 
 gem "shakapacker", "= 10.3"
 
-gem "bcrypt", "= 3.1.7"
+gem "bcrypt", "3.1.22"
 
 gem "pry-byebug"
 
