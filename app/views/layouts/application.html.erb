@@ -20,10 +20,30 @@
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <%= stylesheet_link_tag "application" %>
 
   </head>
 
   <body>
+    <nav class="navbar navbar-expand-lg navbar-dark my-navbar py-2">
+      <div class="container">
+        <a class="navbar-brand fs-3" href="/">🌍 Tobi Atlas</a>
+        <div class="navbar-nav ms-auto">
+          <% if current_user %>
+            <span class="navbar-text me-3">Welcome, <%= current_user.username %>!</span>
+            <%= link_to root_path, class: "btn btn-outline-light me-2" do %>
+              <i class="bi bi-house-door"></i>
+            <% end %>
+            <%= link_to "My Trips", trips_path, class: "btn btn-primary me-2" %>
+            <%= button_to "Logout", logout_path, method: :delete, class: "btn btn-danger" %>
+          <% else %>
+            <%= link_to "Login", login_path, class: "btn btn-primary me-2" %>
+            <%= link_to "Sign Up", new_user_path, class: "btn btn-success" %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
     <% if notice %>
       <div class = "notice">
