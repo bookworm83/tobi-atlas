@@ -24,6 +24,10 @@ This is a **training project** — I (the user) am learning to become a software
 
 Rails application with a PostgreSQL database and React on Rails (TypeScript + Webpack/Rspack) for the front end.
 
+## Testing
+
+- This project uses **RSpec** (`spec/`) for tests. **Never write into `test/`** (the default Minitest folder) — it is not used here, even though it still exists in the repo.
+
 ## Notes
 
 <!-- Anything else you want me to remember. -->

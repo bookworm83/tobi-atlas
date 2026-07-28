@@ -3,9 +3,11 @@ class User < ApplicationRecord
   has_many :trips
   validates :email, presence: true, uniqueness: true, format: {with: URI::MailTo::EMAIL_REGEXP}
   validates :username, presence: true, uniqueness: true
-  validates :password, presence: true
-  validates :password_confirmation, presence: true
+  validates :password, presence: true, on: :create
+  validates :password_confirmation, presence: true, if: -> { password.present? }
   validate :password_confirmation_match
+  MAX_BIO_LENGTH = 200
+  validates :bio, length: { maximum: MAX_BIO_LENGTH }
 
   private
 
