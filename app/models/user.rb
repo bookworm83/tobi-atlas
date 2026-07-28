@@ -6,7 +6,8 @@ class User < ApplicationRecord
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true, if: -> { password.present? }
   validate :password_confirmation_match
-  validates :bio, length: { maximum: 200 }
+  MAX_BIO_LENGTH = 200
+  validates :bio, length: { maximum: MAX_BIO_LENGTH }
 
   private
 

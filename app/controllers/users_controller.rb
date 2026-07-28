@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_login, only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
       render :edit
       return
     end
+
     if @user.update(user_params)
       redirect_to edit_profile_path, notice: "Profile updated successfully."
     else
@@ -31,12 +33,11 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-  def user_params
+  private def user_params
     params.require(:user).permit(:email, :username, :bio, :password, :password_confirmation)
   end
 
-  def require_login
+  private def require_login
     redirect_to login_path, alert: "Please log in first." unless current_user
   end
 end
