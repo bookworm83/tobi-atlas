@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_08_13_094845) do
+ActiveRecord::Schema[8.1].define(version: 2026_08_17_133348) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
@@ -45,11 +45,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_08_13_094845) do
     t.string "content_type", null: false
     t.datetime "created_at", null: false
     t.integer "file_size", null: false
+    t.string "original_filename"
     t.string "s3_bucket", null: false
     t.string "s3_key", null: false
     t.datetime "updated_at", null: false
-    t.index ["attachable_type", "attachable_id"],
-            name: "index_s3_uploads_on_attachable"
+    t.index ["attachable_type", "attachable_id"], name: "index_s3_uploads_on_attachable"
   end
 
   create_table "trips", force: :cascade do |t|
