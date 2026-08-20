@@ -1,4 +1,5 @@
 require "aws-sdk-s3"
+
 class S3Uploader
   def initialize(file:, attachable:)
     @file = file
@@ -22,7 +23,8 @@ class S3Uploader
       s3_key: key,
       s3_bucket: bucket,
       content_type: @file.content_type,
-      file_size: @file.size
+      file_size: @file.size,
+      original_filename: @file.original_filename
     )
 
   end
