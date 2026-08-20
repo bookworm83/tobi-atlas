@@ -29,8 +29,7 @@ class S3Uploader
 
   end
 
-  private
-  def s3_client
+  private def s3_client
     Aws::S3::Client.new(
       endpoint: ENV.fetch("MINIO_ENDPOINT", "http://localhost:9000"),
       access_key_id: ENV.fetch("MINIO_ROOT_USER", "minioadmin"),
@@ -40,8 +39,7 @@ class S3Uploader
     )
   end
 
-  private
-  def bucket
+  private def bucket
     ENV.fetch("MINIO_BUCKET", "tobi-atlas-development")
   end
 end
