@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_login, only: [:edit, :update]
+  before_action :require_login, only: [:edit, :update, :picture]
 
   def new
     @user = User.new
@@ -31,6 +31,11 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def picture
+    upload = current_user.s3_uploads.last
+    render json: { url: upload&.presigned_url }
   end
 
   private def user_params
