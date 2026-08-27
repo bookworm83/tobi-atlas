@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 
-export default function EditProfile({ bio, updateUrl, csrfToken, uploadUrl }) {
+export default function EditProfile({ bio, updateUrl, csrfToken, uploadUrl, fetchUrl, errors = [] }) {
     const [userBio, setUserBio] = useState(bio || '');
     const [showPassword, setShowPassword] = useState(false);
+    const [pictureUrl, setPictureUrl] = useState(null)
+
+    useEffect(() => {
+        fetch(fetchUrl)
+            .then((response) => response.json())
+            .then((data) => setPictureUrl(data.url));
+    }, []);
 
     return (
       <div className="container mt-5">
@@ -13,6 +20,17 @@ export default function EditProfile({ bio, updateUrl, csrfToken, uploadUrl }) {
             <div className="card shadow">
               <div className="card-body p-5">
                 <h2 className="card-title mb-4">Edit Profile</h2>
+
+                {errors.length > 0 && (
+                    <div className="alert alert-danger">
+                      <ul className="mb-0">
+                        {errors.map((message, index) => (
+                          <li key={index}>{message}</li>
+                        ))}
+                      </ul>
+                    </div>
+                )}
+
                 <form action={updateUrl} method="post">
                     <input type="hidden" name="authenticity_token" defaultValue={csrfToken} />
                     <input type="hidden" name="_method" defaultValue="patch" />
@@ -72,6 +90,9 @@ export default function EditProfile({ bio, updateUrl, csrfToken, uploadUrl }) {
                     </div>
                 </form>
                 <hr className="my-4" />
+                {pictureUrl && (
+                    <img src={pictureUrl} alt="Profile" className="img-fluid mb-3" />
+                )}
                 <form action={uploadUrl} method="post" encType="multipart/form-data">
                     <input type="hidden" name="authenticity_token" defaultValue={csrfToken} />
                       <div className="mb-3">
@@ -97,9 +118,11 @@ export default function EditProfile({ bio, updateUrl, csrfToken, uploadUrl }) {
     )
 }
 
-EditProfile.proptypes = {
+EditProfile.propTypes = {
     bio: PropTypes.string,
     updateUrl: PropTypes.string.isRequired,
     csrfToken:PropTypes.string.isRequired,
-    uploadUrl: PropTypes.string.isRequired
+    uploadUrl: PropTypes.string.isRequired,
+    fetchUrl: PropTypes.string.isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string)
 }

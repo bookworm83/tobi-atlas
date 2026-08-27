@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  resource :profile, only: [:edit, :update], controller: "users"
+  resource :profile, only: [:edit, :update], controller: "users" do
+    get :picture
+  end
+
   resources :uploads, only: [:create]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

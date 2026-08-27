@@ -2,6 +2,8 @@
   bio: @user.bio,
   updateUrl: profile_path,
   csrfToken: form_authenticity_token,
-  uploadUrl: uploads_path
+  uploadUrl: uploads_path,
+  fetchUrl: picture_profile_path,
+  errors: @user.errors.full_messages
 })
 %>
